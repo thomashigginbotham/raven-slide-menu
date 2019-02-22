@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <raven-slide-menu [(open)]="menuIsOpen"
+    deactivateQuery="(min-width: 1200px)"
+    [position]="position"
+    pushContainer=".wrapper"
+    [pushPercent]="pushPercent">
+    <nav class="menu" [ngClass]="'menu-' + position">
+      <header>
+        <h2>Menu</h2>
+        <button class="close-button" (click)="closeMenu()">Close</button>
+      </header>
+
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </raven-slide-menu>
+
+  <article>
+    <h1>Raven Slide Menu</h1>
+    <p>Open the menu using the icon above. Change the options below to see how the slide menu is affected.</p>
+
+    <div class="settings">
+      <div class="form-field">
+        <label for="position">Menu Position</label>
+
+        <select id="position" [(ngModel)]="position">
+          <option value="top">Top</option>
+          <option value="right">Right</option>
+          <option value="bottom">Bottom</option>
+          <option value="left">Left</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="pushPercent">Push Amount (Percentage)</label>
+        <input type="number" min="0" max="100" [(ngModel)]="pushPercent">
+      </div>
+    </div>
+  </article>
+</div>

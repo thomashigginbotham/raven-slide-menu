@@ -1,0 +1,44 @@
+/* ==-- Slide Menu Styles --== */
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 968px;
+}
+
+raven-slide-menu {
+  float: left;
+  margin-right: 1rem;
+}
+
+.close-button {
+  display: inline-block;;
+}
+
+.menu {
+  box-sizing: border-box;
+  padding: 2rem;
+  background-color: #f0f0f0;
+}
+
+.menu-top,
+.menu-bottom {
+  width: 100vw;
+}
+
+.menu-left,
+.menu-right {
+  min-width: 16rem;
+  height: 100vh;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 1200px) {
+  .close-button {
+    display: none;
+  }
+}

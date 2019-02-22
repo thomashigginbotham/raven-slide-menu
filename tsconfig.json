@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "slide-menu": [
+        "dist/slide-menu"
+      ],
+      "slide-menu/*": [
+        "dist/slide-menu/*"
+      ]
+    }
   }
 }
