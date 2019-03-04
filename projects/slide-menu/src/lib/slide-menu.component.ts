@@ -16,9 +16,6 @@ import {
   styleUrls: ['./slide-menu.component.css']
 })
 export class SlideMenuComponent implements OnInit, AfterViewInit {
-  @Input()
-  deactivateQuery: string;
-
   @Input('pushContainer')
   pushContainerSelector: string;
 
@@ -29,6 +26,7 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
   private _pushContainerElement: HTMLElement;
   private _pushContainerClassName: string;
   private _pushPercent: number;
+  private _deactivateQuery: string;
   private _menuIsActive: boolean;
   private _activeClassName: string;
   private _position: 'top' | 'right' | 'bottom' | 'left';
@@ -42,8 +40,8 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
     this._menuIsOpen = true;
     this._pushContainerClassName = 'rsm-push-container';
     this._pushPercent = 100;
+    this._deactivateQuery = '';
 
-    this.deactivateQuery = '';
     this.position = 'left';
     this.pushContainerSelector = '';
     this.menuIsOpenChange = new EventEmitter();
@@ -92,6 +90,22 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
     }
 
     this.resetPosition();
+    this.closeMenuWithoutTransition();
+  }
+
+  get deactivateQuery(): string {
+    return this._deactivateQuery;
+  }
+
+  @Input()
+  set deactivateQuery(value: string) {
+    this._deactivateQuery = value;
+
+    if (!this._menuElement) {
+      return;
+    }
+
+    this.activateByMediaQuery();
     this.closeMenuWithoutTransition();
   }
 
@@ -268,10 +282,12 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
     this._menuElement.style.bottom = '';
     this._menuElement.style.left = '';
 
-    this._pushContainerElement.style.top = '';
-    this._pushContainerElement.style.right = '';
-    this._pushContainerElement.style.bottom = '';
-    this._pushContainerElement.style.left = '';
+    if (this._pushContainerElement) {
+      this._pushContainerElement.style.top = '';
+      this._pushContainerElement.style.right = '';
+      this._pushContainerElement.style.bottom = '';
+      this._pushContainerElement.style.left = '';
+    }
   }
 
   /**

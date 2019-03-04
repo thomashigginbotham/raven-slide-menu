@@ -1,5 +1,6 @@
 /* ==-- Slide Menu Styles --== */
 
+/* Menu */
 .wrapper {
   margin: 0 auto;
   max-width: 968px;
@@ -10,24 +11,44 @@ raven-slide-menu {
   margin-right: 1rem;
 }
 
-.close-button {
-  display: inline-block;;
-}
-
 .menu {
   box-sizing: border-box;
   padding: 2rem;
+  min-width: 16rem;
+  height: calc(100vh - 2rem);
   background-color: #f0f0f0;
 }
 
-.menu-top,
-.menu-bottom {
-  width: 100vw;
+.menu header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.menu-left,
-.menu-right {
-  min-width: 16rem;
+.menu h2 {
+  margin: 0 .5rem 0 0;
+}
+
+.close-button {
+  padding: 0;
+  border: 0;
+  line-height: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.close-button svg {
+  height: 2rem;
+}
+
+:host-context(.rsm-active) .menu-top,
+:host-context(.rsm-active) .menu-bottom {
+  width: 100vw;
+  height: auto;
+}
+
+:host-context(.rsm-active) .menu-left,
+:host-context(.rsm-active) .menu-right {
   height: 100vh;
 }
 
@@ -37,8 +58,47 @@ raven-slide-menu {
   list-style: none;
 }
 
+@media (max-width: 1199.999px) {
+  [data-large-viewport] {
+    display: none;
+  }
+}
+
 @media (min-width: 1200px) {
+  [data-small-viewport] {
+    display: none;
+  }
+
   .close-button {
     display: none;
+  }
+}
+
+/* Forms */
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  margin-right: 1rem;
+}
+
+.form-field input,
+.form-field select {
+  box-sizing: border-box;
+  padding: .5rem;
+  min-width: 5rem;
+  height: 2rem;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  font-size: .8rem;
+  background-color: #fff;
+}
+
+@media (min-width: 35rem) {
+  .form-field label {
+    display: inline-block;
+    min-width: 12rem;
   }
 }
