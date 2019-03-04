@@ -76,6 +76,37 @@ Yes, you can hide or style the button using CSS.
 
 If you hide the button, you can create your own, fully customizable button anywhere you like. Just set your custom button's `(click)` handler so that it opens/closes the menu (e.g. `<button (click)="isOpened === !isOpened">Menu</button>`).
 
+### How can I reset the menu when it has dynamic content?
+
+If the content inside the menu changes, it can affect the calculations that determine how it is positioned, causing it to be partly visible when it should be closed.
+
+To fix this, close the menu after the content changes are complete. For example:
+
+```ts
+import { Component, ViewChild } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <raven-slide-menu #slideMenu [(open)]="isOpened">
+      <div>{{ someDynamicContent }}</div>
+    </raven-slide-menu>
+  `,
+  styles: []
+})
+export class AppComponent {
+  @ViewChild('slideMenu')
+  slideMenu: SlideMenuComponent;
+
+  someFuncThatUpdatesContent() {
+    // Update content in menu
+    // ...
+
+    // Reset menu
+    setTimeout(() => this.slideMenu.closeMenuWithoutTransition());
+  }
+}
+```
 
 ## Development
 
