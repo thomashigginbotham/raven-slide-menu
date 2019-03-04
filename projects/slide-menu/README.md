@@ -1,24 +1,86 @@
-# SlideMenu
+# Raven Slide Menu for Angular
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+An Angular component for making menus that slide in from one of the four sides of the browser.
 
-## Code scaffolding
+![Demo](https://raw.githubusercontent.com/thomashigginbotham/raven-slide-menu/HEAD/screenshots/sample.png)
 
-Run `ng generate component component-name --project slide-menu` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project slide-menu`.
-> Note: Don't forget to add `--project slide-menu` or else it will be added to the default project in your `angular.json` file. 
+## Features
 
-## Build
+* Fully stylable with CSS
+* Menu can remain visible on small/large viewports (controlled by media query)
+* Menu can push or overlay content
 
-Run `ng build slide-menu` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Publishing
+Install into your Angular project using NPM.
 
-After building your library with `ng build slide-menu`, go to the dist folder `cd dist/slide-menu` and run `npm publish`.
+```shell
+npm install raven-slide-menu --save
+```
 
-## Running unit tests
+Import the **SlideMenuModule** into your module.
 
-Run `ng test slide-menu` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts
+import { SlideMenuModule } from 'raven-slide-menu';
 
-## Further help
+@NgModule({
+  imports: [
+    SlideMenuModule,
+    // ...
+  ],
+  // ...
+})
+export class AppModule { }
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Usage
+
+Add a &lt;raven-slide-menu&gt; element to your template, and add menu content inside it.
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <raven-slide-menu [(open)]="isOpened">
+      <!-- Content to appear in menu -->
+    </raven-slide-menu>
+  `,
+  styles: []
+})
+export class AppComponent { }
+```
+
+### Options
+
+| Option          | Type    | Description                                                       | Default Value
+| :-------------- | :------ | :---------------------------------------------------------------- | :------------
+| open            | boolean | Whether the menu is open or closed.                               | false
+| position        | string  | Set to "top", "right", "bottom" or "left".                        | "left"
+| pushContainer   | string  | A CSS selector for an element that will be "pushed" by the menu.  | ""
+| pushPercent     | number  | The percentage amount an element will be "pushed" by the menu.    | 100
+| deactivateQuery | string  | A CSS query that when matched will deactivate the slide menu.     | ""
+
+## FAQ
+
+### Can I remove or customize the hamburger menu button?
+
+Yes, you can hide or style the button using CSS.
+
+```css
+.rsm-button-wrapper {
+  display: none;
+}
+```
+
+If you hide the button, you can create your own, fully customizable button anywhere you like. Just set your custom button's `(click)` handler so that it opens/closes the menu (e.g. `<button (click)="isOpened === !isOpened">Menu</button>`).
+
+
+## Development
+
+To contribute to the development of this component, clone its repository and run `npm install`. Then run `ng serve -o` to start a development server and to open a sample page in your browser.
+
+## License.
+
+MIT license.
