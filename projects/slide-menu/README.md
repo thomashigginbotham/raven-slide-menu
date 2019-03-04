@@ -74,7 +74,7 @@ Yes, you can hide or style the button using CSS.
 }
 ```
 
-If you hide the button, you can create your own, fully customizable button anywhere you like. Just set your custom button's `(click)` handler so that it opens/closes the menu (e.g. `<button (click)="isOpened === !isOpened">Menu</button>`).
+If you hide the button, you can create your own, fully customizable button anywhere you like. Just set your custom button's `(click)` handler so that it opens/closes the menu (e.g. `<button (click)="isOpened = !isOpened">Menu</button>`).
 
 ### How can I reset the menu when it has dynamic content?
 
