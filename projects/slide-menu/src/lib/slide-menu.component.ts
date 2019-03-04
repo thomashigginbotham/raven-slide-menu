@@ -226,7 +226,7 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
   /**
    * Shows the menu.
    */
-  openMenu() {console.log(this.pushPercent);
+  openMenu() {
     this._menuElement.style[this.position] = '0';
 
     if (this._pushContainerElement) {
