@@ -139,6 +139,7 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this._menuElement = this.menuElementRef.nativeElement;
 
+    // Set up push container
     if (this.pushContainerSelector !== '') {
       this._pushContainerElement = document
         .querySelector(this.pushContainerSelector);
@@ -147,6 +148,19 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
         this._pushContainerElement.classList.add(this._pushContainerClassName);
       }
     }
+
+    // Recalc menu when content affects menu dimensions
+    if (!('ResizeObserver' in window)) {
+      return;
+    }
+
+    const resizeObserver = new (<any>window).ResizeObserver(entries => {
+      if (!this.menuIsOpen) {
+        this.closeMenuWithoutTransition();
+      }
+    });
+
+    resizeObserver.observe(this._menuElement);
   }
 
   ngAfterViewInit() {
