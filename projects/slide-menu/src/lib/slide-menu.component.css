@@ -6,22 +6,22 @@
 }
 
 /* Menu Button */
-:host-context(.rsm-active) .rsm-button-wrapper {
+.rsm-active .rsm-button-wrapper {
   display: block;
 }
 
-:host-context(.rsm-active) .rsm-button {
+.rsm-active .rsm-button {
   padding: 0;
   border: 0;
   cursor: pointer;
 }
 
-:host-context(.rsm-active) .rsm-button svg {
+.rsm-active .rsm-button svg {
   height: 2rem;
 }
 
 /* Menu */
-:host-context(.rsm-active) .rsm-menu {
+.rsm-active .rsm-menu {
   position: fixed;
   overflow: auto;
   transition-property: top, right, bottom, left;
@@ -29,22 +29,14 @@
   transition-duration: 200ms;
 }
 
-:host-context(.rsm-active) .rsm-menu-top,
-:host-context(.rsm-active) .rsm-menu-bottom {
+.rsm-active .rsm-menu-top,
+.rsm-active .rsm-menu-bottom {
   left: 0;
   width: 100vw;
 }
 
-:host-context(.rsm-active) .rsm-menu-left,
-:host-context(.rsm-active) .rsm-menu-right {
+.rsm-active .rsm-menu-left,
+.rsm-active .rsm-menu-right {
   top: 0;
   height: 100vh;
-}
-
-/* Push Container */
-/deep/ .rsm-active .rsm-push-container {
-  position: relative;
-  transition-property: top, right, bottom, left;
-  transition-timing-function: ease-out;
-  transition-duration: 200ms;
 }

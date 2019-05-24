@@ -1,5 +1,13 @@
 /* ==-- Slide Menu Styles --== */
 
+/* Push Container */
+.rsm-push-container {
+  position: relative;
+  transition-property: top, right, bottom, left;
+  transition-timing-function: ease-out;
+  transition-duration: 200ms;
+}
+
 /* Menu */
 .wrapper {
   margin: 0 auto;
@@ -15,8 +23,17 @@ raven-slide-menu {
   box-sizing: border-box;
   padding: 2rem;
   min-width: 16rem;
-  height: calc(100vh - 2rem);
   background-color: #f0f0f0;
+}
+
+.menu-top,
+.menu-bottom {
+  width: 100vw;
+}
+
+.menu-left,
+.menu-right {
+  height: 100vh;
 }
 
 .menu header {
@@ -41,17 +58,6 @@ raven-slide-menu {
   height: 2rem;
 }
 
-:host-context(.rsm-active) .menu-top,
-:host-context(.rsm-active) .menu-bottom {
-  width: 100vw;
-  height: auto;
-}
-
-:host-context(.rsm-active) .menu-left,
-:host-context(.rsm-active) .menu-right {
-  height: 100vh;
-}
-
 .menu ul {
   margin: 0;
   padding: 0;
@@ -67,6 +73,10 @@ raven-slide-menu {
 @media (min-width: 1200px) {
   [data-small-viewport] {
     display: none;
+  }
+
+  .menu {
+    height: calc(100vh - 4rem);
   }
 
   .close-button {

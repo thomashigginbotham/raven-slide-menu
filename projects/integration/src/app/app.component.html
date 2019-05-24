@@ -4,7 +4,8 @@
     [deactivateQuery]="deactivateQuery"
     [position]="position"
     pushContainer=".wrapper"
-    [pushPercent]="pushPercent">
+    [pushPercent]="pushPercent"
+    [class.is-open]="menuIsOpen">
     <nav class="menu" [ngClass]="'menu-' + position">
       <header>
         <h2>Menu</h2>
@@ -20,7 +21,6 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
-
   </raven-slide-menu>
 
   <!-- Main Content -->

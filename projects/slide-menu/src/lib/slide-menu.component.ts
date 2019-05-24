@@ -3,11 +3,12 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
+  ChangeDetectorRef,
   Input,
   Output,
   EventEmitter,
   HostListener,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 
 @Component({
@@ -22,21 +23,22 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
   @ViewChild('menu')
   menuElementRef: ElementRef;
 
+  menuIsActive: boolean;
+
   private _menuElement: HTMLDivElement;
   private _pushContainerElement: HTMLElement;
   private _pushContainerClassName: string;
   private _pushPercent: number;
   private _deactivateQuery: string;
-  private _menuIsActive: boolean;
-  private _activeClassName: string;
   private _position: 'top' | 'right' | 'bottom' | 'left';
   private _menuIsOpen: boolean;
 
   constructor(
-    private _elementRef: ElementRef
+    private _elementRef: ElementRef,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
-    this._menuIsActive = false;
-    this._activeClassName = 'rsm-active';
+    this.menuIsActive = false;
+
     this._menuIsOpen = true;
     this._pushContainerClassName = 'rsm-push-container';
     this._pushPercent = 100;
@@ -45,20 +47,6 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
     this.position = 'left';
     this.pushContainerSelector = '';
     this.menuIsOpenChange = new EventEmitter();
-  }
-
-  get menuIsActive() {
-    return this._menuIsActive;
-  }
-
-  set menuIsActive(value: boolean) {
-    this._menuIsActive = value;
-
-    if (value) {
-      this.activateMenu();
-    } else {
-      this.deactivateMenu();
-    }
   }
 
   get position(): 'top' | 'right' | 'bottom' | 'left' {
@@ -170,6 +158,8 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
 
     this.activateByMediaQuery();
     this.addListeners();
+
+    this._changeDetectorRef.detectChanges();
   }
 
   @HostListener('document:click', ['$event.target'])
@@ -202,28 +192,6 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
         this.activateByMediaQuery();
       });
     });
-  }
-
-  /**
-   * Activates the sliding menu by adding a class to the <body> element.
-   */
-  activateMenu() {
-    const body = document.querySelector('body');
-
-    if (!body.classList.contains(this._activeClassName)) {
-      body.classList.add(this._activeClassName);
-    }
-  }
-
-  /**
-   * Deactivates the sliding menu by removing a class from the <body> element.
-   */
-  deactivateMenu() {
-    const body = document.querySelector('body');
-
-    if (body.classList.contains(this._activeClassName)) {
-      body.classList.remove(this._activeClassName);
-    }
   }
 
   /**
