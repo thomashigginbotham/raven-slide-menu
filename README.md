@@ -64,6 +64,19 @@ export class AppComponent { }
 
 ## FAQ
 
+### Why is the pushContainer not being pushed?
+
+The element used as the push container needs to use relative or absolute positioning. It also needs to have its transition properties set appropriately. Because the push container exists outside of the component, and we don't want to risk overriding your styles, we leave it to you to apply the following styles.
+
+```css
+.rsm-push-container {
+  position: relative;
+  transition-property: top, right, bottom, left;
+  transition-timing-function: ease-out;
+  transition-duration: 200ms;
+}
+```
+
 ### Can I remove or customize the hamburger menu button?
 
 Yes, you can hide or style the button using CSS.
