@@ -1,6 +1,6 @@
 {
   "name": "raven-slide-menu",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "An Angular component for making menus that slide in from one of the four sides of the browser.",
   "keywords": ["angular", "menu", "sidebar", "slide"],
   "license": "MIT",
