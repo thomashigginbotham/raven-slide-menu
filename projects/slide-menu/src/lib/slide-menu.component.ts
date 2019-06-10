@@ -20,7 +20,7 @@ export class SlideMenuComponent implements OnInit, AfterViewInit {
   @Input('pushContainer')
   pushContainerSelector: string;
 
-  @ViewChild('menu')
+  @ViewChild('menu', { static: true })
   menuElementRef: ElementRef;
 
   menuIsActive: boolean;
